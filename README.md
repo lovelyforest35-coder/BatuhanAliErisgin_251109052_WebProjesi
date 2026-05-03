@@ -1,11 +1,11 @@
-# 251109052 Online Kurs Projesi
+# Online Kurs Platformu
 
 ## Kurulum
-npm install
-node b-sunucu.js
 
-## DB
-b-veritabani.sql çalıştır
+1. npm install
+2. MySQL aç
+3. b-veritabani.sql çalıştır
+4. node b-sunucu.js
 
-## Giriş
+## Çalıştırma
 http://localhost:3000
