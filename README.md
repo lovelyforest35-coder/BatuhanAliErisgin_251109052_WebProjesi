@@ -1,2 +1,11 @@
-# BatuhanAliEri-gin_251109052_WebProjesi
-BatuhanAliErişgin_251109052_WebProjesi
+# 251109052 Online Kurs Projesi
+
+## Kurulum
+npm install
+node b-sunucu.js
+
+## DB
+b-veritabani.sql çalıştır
+
+## Giriş
+http://localhost:3000
