@@ -19,3 +19,9 @@ Projeyi çalıştırmak için aşağıdaki 3 adımı uygulamanız yeterlidir:
 Proje klasörünün içinde bir terminal açın ve şu komutu yazarak gerekli paketleri indirin:
 bash
 npm install
+
+3. Alttaki komudu terminal'a yazarak sunucuya calistirin.
+node server.js
+
+3.1 komudu yazdıktan sonra tarayıcınıza alttaki linki girerek siteye giriş sağlıyabilirisiniz.
+http://localhost:3000
