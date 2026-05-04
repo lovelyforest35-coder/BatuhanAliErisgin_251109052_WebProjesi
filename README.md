@@ -2,9 +2,11 @@ Online Eğitim Platformu Projesi
 
 Bu proje; Node.js, Express ve MySQL kullanılarak geliştirilmiş bir web uygulamasıdır.
 
-Öğrenci Bilgileri
+Öğrenci Bilgileri;
 Ad Soyad: Batuhan Ali Erişgin
+
 Öğrenci No: 251109052
+
 
 Kurulum ve Çalıştırma
 
