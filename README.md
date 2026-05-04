@@ -19,8 +19,11 @@ Projeyi çalıştırmak için aşağıdaki 3 adımı uygulamanız yeterlidir:
 
 2. Bağımlılıkları Yükleme
 Proje klasörünün içinde bir terminal açın ve şu komutu yazarak gerekli paketleri indirin:
+
 bash
+
 npm install
+
 
 3. Alttaki komudu terminal'a yazarak sunucuya calistirin.
 node server.js
