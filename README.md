@@ -3,7 +3,7 @@ Online Kurs / Eğitim Platformu Web Projesi
 Bu proje, Web Programlama dersi kapsamında geliştirilmiş dinamik bir eğitim platformudur. Backend tarafında Node.js (Express), veritabanı olarak MySQL kullanılmıştır. Projede kullanıcı giriş/kayıt sistemi, yetkilendirme (session), CRUD işlemleri ve özel CSS/HTML yapısı bulunmaktadır.
 
 Geliştirici Bilgileri
-Adı Soyadı:** Batuhan Ali Erişgin
+Adı Soyadı: Batuhan Ali Erişgin
 Öğrenci Numarası: 251109052
 
 Proje Kurulumu ve Çalıştırılması
