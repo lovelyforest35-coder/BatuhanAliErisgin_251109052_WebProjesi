@@ -28,6 +28,7 @@ Sistemi açmadan önce bilgisayarınızda şu yazılımların hazır bulunması 
 3.  Proje klasörünüzü (içinde `server.js` ve `b-web-dosyalari` olan klasörü) seçip **Klasörü Seç** butonuna basın. Proje dosyaları sol tarafa gelecektir.
 4.  Üstteki menüden **Terminal -> New Terminal** seçeneğine tıklayın (Ekranın altında siyah bir komut satırı penceresi açılacaktır).
 5.  Açılan o alt pencereye şu kodu yapıştırıp klavyeden **Enter** tuşuna basın:
+6.  
     npm install express express-session mysql2
 
 
