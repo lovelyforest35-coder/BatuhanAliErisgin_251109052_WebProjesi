@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap / Kayıt Ol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="b-ana-tasiyici">
+        <nav class="b-ust-navigasyon">
+            <div class="b-logo"><a href="/">Lila Akademi</a></div>
+            <div class="b-linkler">
+                <a href="/">Anasayfa</a>
+                <a href="/icerik.html">Kurslarımız</a>
+                <a href="/giris.html">Giriş / Kayıt</a>
+                <a href="/admin.html">Admin</a>
+            </div>
+        </nav>
+
+        <div class="b-icerik-bolumu">
+            <div class="b-form-alani">
+                <h3>Giriş Yap</h3>
+                <form id="b-giris-formu">
+                    <div class="b-form-grup">
+                        <label>Kullanıcı Adı</label>
+                        <input type="text" id="b_giris_ad" required>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>Şifre</label>
+                        <input type="password" id="b_giris_sifre" required>
+                    </div>
+                    <button type="submit" class="b-buton-mor">Giriş</button>
+                </form>
+            </div>
+
+            <div class="b-form-alani">
+                <h3>Kayıt Ol</h3>
+                <form id="b-kayit-formu">
+                    <div class="b-form-grup">
+                        <label>Kullanıcı Adı</label>
+                        <input type="text" id="b_kayit_ad" required>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>Şifre</label>
+                        <input type="password" id="b_kayit_sifre" required>
+                    </div>
+                    <button type="submit" class="b-buton-mor">Kayıt Ol</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="b-alt-bilgi">
+            <p>&copy; 2026 Lila Akademi - 251109052</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('b-giris-formu').addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch('/api/251109052_giris', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    kullanici_adi: document.getElementById('b_giris_ad').value,
+                    sifre: document.getElementById('b_giris_sifre').value
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.mesaj);
+                if(data.basarili) window.location.href = '/admin.html';
+            });
+        });
+
+        document.getElementById('b-kayit-formu').addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch('/api/251109052_kayit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    kullanici_adi: document.getElementById('b_kayit_ad').value,
+                    sifre: document.getElementById('b_kayit_sifre').value
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.mesaj);
+                if(data.basarili) document.getElementById('b-kayit-formu').reset();
+            });
+        });
+    </script>
+</body>
+</html>

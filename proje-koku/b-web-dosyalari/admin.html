@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Paneli - 251109052</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="b-ana-tasiyici">
+        <nav class="b-ust-navigasyon">
+            <div class="b-logo"><a href="/">Lila Akademi - Panel</a></div>
+            <div class="b-linkler">
+                <a href="/">Anasayfa</a>
+                <a href="/icerik.html">Kurslarımız</a>
+                <a href="/api/251109052_cikis">Çıkış Yap</a>
+            </div>
+        </nav>
+
+        <div class="b-icerik-bolumu">
+            <h2>Kurs Yönetim Alanı</h2>
+            
+            <div class="b-form-alani">
+                <h3>Yeni Kurs Ekle</h3>
+                <form id="b-kurs-ekle-formu">
+                    <div class="b-form-grup">
+                        <label>Kurs Adı</label>
+                        <input type="text" id="b_kurs_adi" required>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>Eğitmen</label>
+                        <input type="text" id="b_egitmen" required>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>Fiyat (TL)</label>
+                        <input type="number" id="b_fiyat" required>
+                    </div>
+                    <button type="submit" class="b-buton-mor">Kursu Veritabanına Ekle</button>
+                </form>
+            </div>
+
+            <h3>Mevcut Kurs Düzenleme Listesi</h3>
+            <table class="b-tablo-yapisi">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kurs Adı</th>
+                        <th>Eğitmen</th>
+                        <th>Fiyat</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody id="b-admin-tablo-govdesi">
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="b-alt-bilgi">
+            <p>&copy; 2026 Lila Akademi - 251109052</p>
+        </footer>
+    </div>
+
+    <script>
+        function kurslariListele() {
+            fetch('/api/251109052_kurslar')
+                .then(res => {
+                    if (res.status === 401) {
+                        alert('Bu sayfayı görmek için giriş yapmalısınız!');
+                        window.location.href = '/giris.html';
+                        return;
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if(!data) return;
+                    const govde = document.getElementById('b-admin-tablo-govdesi');
+                    govde.innerHTML = '';
+                    data.veri.forEach(k => {
+                        govde.innerHTML += `
+                            <tr>
+                                <td>${k.id}</td>
+                                <td>${k.b_kurs_adi}</td>
+                                <td>${k.b_egitmen}</td>
+                                <td>${k.b_fiyat} TL</td>
+                                <td>
+                                    <button class="b-buton-mor" style="width:auto; padding:5px 10px;" onclick="kursSil(${k.id})">Sil</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                });
+        }
+
+        document.getElementById('b-kurs-ekle-formu').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const veri = {
+                b_kurs_adi: document.getElementById('b_kurs_adi').value,
+                b_egitmen: document.getElementById('b_egitmen').value,
+                b_fiyat: document.getElementById('b_fiyat').value
+            };
+
+            fetch('/api/251109052_kurslar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(veri)
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.mesaj);
+                kurslariListele();
+                document.getElementById('b-kurs-ekle-formu').reset();
+            });
+        });
+
+        function kursSil(id) {
+            if(confirm('Bu kursu silmek istediğinize emin misiniz?')) {
+                fetch(`/api/251109052_kurslar/${id}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.mesaj);
+                    kurslariListele();
+                });
+            }
+        }
+
+        kurslariListele();
+    </script>
+</body>
+</html>

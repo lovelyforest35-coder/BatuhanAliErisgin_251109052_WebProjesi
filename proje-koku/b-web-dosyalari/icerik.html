@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kurs Listesi - Lila Akademi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="b-ana-tasiyici">
+        <nav class="b-ust-navigasyon">
+            <div class="b-logo"><a href="/">Lila Akademi</a></div>
+            <div class="b-linkler">
+                <a href="/">Anasayfa</a>
+                <a href="/icerik.html">Kurslarımız</a>
+                <a href="/giris.html">Giriş / Kayıt</a>
+                <a href="/admin.html">Admin</a>
+            </div>
+        </nav>
+
+        <div class="b-icerik-bolumu">
+            <h2>Mevcut Eğitim Programlarımız</h2>
+            <p>Eğitim listesi ve fiyat tablomuz aşağıda yer almaktadır:</p>
+            
+            <table class="b-tablo-yapisi">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kurs Adı</th>
+                        <th>Eğitmen</th>
+                        <th>Fiyat</th>
+                    </tr>
+                </thead>
+                <tbody id="b-kurs-tablo-govdesi">
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="b-alt-bilgi">
+            <p>&copy; 2026 Lila Akademi - 251109052</p>
+        </footer>
+    </div>
+
+    <script>
+        fetch('/api/251109052_kurslar')
+            .then(res => res.json())
+            .then(data => {
+                const govde = document.getElementById('b-kurs-tablo-govdesi');
+                govde.innerHTML = '';
+                data.veri.forEach(k => {
+                    govde.innerHTML += `
+                        <tr>
+                            <td>${k.id}</td>
+                            <td>${k.b_kurs_adi}</td>
+                            <td>${k.b_egitmen}</td>
+                            <td>${k.b_fiyat} TL</td>
+                        </tr>
+                    `;
+                });
+            });
+    </script>
+</body>
+</html>

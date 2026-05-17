@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lila Akademi - Online Eğitim</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="b-ana-tasiyici">
+        <nav class="b-ust-navigasyon">
+            <div class="b-logo"><a href="/">Lila Akademi</a></div>
+            <div class="b-linkler">
+                <a href="/">Anasayfa</a>
+                <a href="/icerik.html">Kurslarımız</a>
+                <a href="/giris.html">Giriş / Kayıt</a>
+                <a href="/admin.html">Admin</a>
+            </div>
+        </nav>
+
+        <div class="b-kapak-alani">
+            <div class="b-kararsilama-metni">
+                <h1>Geleceğinizi Kodlayın</h1>
+                <p>En modern web teknolojilerini uzman eğitmenlerden lila konsepti farkıyla öğrenin.</p>
+            </div>
+        </div>
+
+        <div class="b-icerik-bolumu">
+            <h2>İletişim & Konum</h2>
+            <div class="b-medya-kutusu">
+                <iframe src="https://www.youtube.com/embed/ZxsNzegiGHw" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.2227181057473!2d28.9745!3d41.0256!2m3!1f0!2f0!3f0!3m2!1i1024!2i1000!3f0!3m2!1m1!2zNDHCsDAxJzMyLjIiTiAyOMKwNTgnMjguMiJF!5e0!3m2!1str!2str!4v1621250000000"></iframe>
+            </div>
+
+            <div class="b-form-alani">
+                <h3>Bizimle İletişime Geçin</h3>
+                <form id="b-mesaj-formu">
+                    <div class="b-form-grup">
+                        <label>Ad Soyad</label>
+                        <input type="text" id="b_ad_soyad" required>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>E-Posta</label>
+                        <input type="email" id="b_eposta" required>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>İlgi Duyduğunuz Alan</label>
+                        <select id="b_konu_alani">
+                            <option value="Node.js Geliştirme">Node.js Geliştirme</option>
+                            <option value="MySQL Veritabanı">MySQL Veritabanı</option>
+                            <option value="Frontend Tasarım">Frontend Tasarım</option>
+                        </select>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>Mesajınız</label>
+                        <textarea id="b_mesaj_metni" rows="4" required></textarea>
+                    </div>
+                    <div class="b-form-grup">
+                        <label>Bültene Abone Olmak İster misiniz?</label>
+                        <div class="b-radyo-grup">
+                            <label><input type="radio" name="b_abone" value="Evet" checked> Evet</label>
+                            <label><input type="radio" name="b_abone" value="Hayır"> Hayır</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="b-buton-mor">Mesaj Gönder</button>
+                </form>
+            </div>
+
+            <div class="b-iletisim-bilgi">
+                <p><i class="fas fa-map-marker-alt"></i> Merkez Kampüs No: 251109052, İstanbul</p>
+                <p><i class="fas fa-phone"></i> +90 212 555 52 52</p>
+                <p><i class="fas fa-envelope"></i> destek@251109052.com</p>
+            </div>
+        </div>
+
+        <footer class="b-alt-bilgi">
+            <p>&copy; 2026 Lila Akademi - 251109052</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('b-mesaj-formu').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const veri = {
+                b_ad_soyad: document.getElementById('b_ad_soyad').value,
+                b_eposta: document.getElementById('b_eposta').value,
+                b_konu_alani: document.getElementById('b_konu_alani').value,
+                b_mesaj_metni: document.getElementById('b_mesaj_metni').value,
+                b_abone_durumu: document.querySelector('input[name="b_abone"]:checked').value
+            };
+
+            fetch('/api/251109052_mesaj_ekle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(veri)
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.mesaj);
+                if(data.basarili) document.getElementById('b-mesaj-formu').reset();
+            });
+        });
+    </script>
+</body>
+</html>
