@@ -1,6 +1,6 @@
 # Proje Çalıştırma Kılavuzu (Beni Oku)
 
-Bu dosyada, projenin yerel bilgisayarda nasıl kurulup çalıştırılacağını adım adım açıkladım hocam. Projede hocamızın önerdiği Node.js (Express) ve MySQL (mysql2 paketi) altyapısı kullanılmıştır. Tablolar arası ilişkiler ve yönetim ekranları MySQL Workbench üzerinden de kontrol edilebilmektedir.
+Bu dosyada, projenin yerel bilgisayarda nasıl kurulup çalıştırılacağını adım adım açıkladım. Projede hocamızın önerdiği Node.js (Express) ve MySQL (mysql2 paketi) altyapısı kullanılmıştır. Tablolar arası ilişkiler ve yönetim ekranları MySQL Workbench üzerinden de kontrol edilebilmektedir.
 
 ---
 
