@@ -1,44 +1,51 @@
-Online Kurs / Eğitim Platformu Web Projesi
+# Proje Çalıştırma Kılavuzu (Beni Oku)
 
-Bu proje, Web Programlama dersi kapsamında geliştirilmiş dinamik bir eğitim platformudur. Backend tarafında Node.js (Express), veritabanı olarak MySQL kullanılmıştır. Projede kullanıcı giriş/kayıt sistemi, yetkilendirme (session), CRUD işlemleri ve özel CSS/HTML yapısı bulunmaktadır.
+Bu dosyada, projenin yerel bilgisayarda nasıl kurulup çalıştırılacağını adım adım açıkladım hocam. Projede hocamızın önerdiği Node.js (Express) ve MySQL (mysql2 paketi) altyapısı kullanılmıştır. Tablolar arası ilişkiler ve yönetim ekranları MySQL Workbench üzerinden de kontrol edilebilmektedir.
 
-Geliştirici Bilgileri
-Adı Soyadı: Batuhan Ali Erişgin
-Öğrenci Numarası: 251109052
+---
 
-Proje Kurulumu ve Çalıştırılması
+## 1. Gerekli Programların Kurulması
 
-Projeyi bilgisayarınızda yerel ortamda (localhost) çalıştırmak için aşağıdaki adımları sırasıyla takip ediniz:
+Sistemi açmadan önce bilgisayarınızda şu yazılımların hazır bulunması gerekir:
+*   **Node.js:** Projenin arka plan servislerini yürütmek için. (Kendi sitesinden indirip kurabilirsiniz).
+*   **MySQL Server & MySQL Workbench:** Veritabanı tablolarını barındırmak ve görsel olarak incelemek için.
 
-1. Gereksinimler
-   
-   
-a. Bilgisayarınızda Node.js yüklü olmalıdır
+---
 
-b. Bilgisayarınızda MySQL veritabanı sunucusu çalışır durumda olmalıdır.
+## 2. Veritabanının Workbench ile Hazırlanması
+
+1.  **MySQL Workbench** programını açın ve yerel bağlantınıza (`Local Instance`) çift tıklayarak giriş yapın.
+2.  Yukarıdaki menü araçlarından yeni bir SQL sekmesi açın (`Create a new SQL tab`).
+3.  Proje klasöründe yer alan `veritabanı.sql` dosyasının içindeki kod satırlarının tamamını seçip bu sekmeye yapıştırın.
+4.  Yukarıdaki **Şimşek (Execute)** butonuna basarak sorguları çalıştırın. Sol taraftaki *Schemas* kısmına `251109052_egitim_platformu` veritabanı ve 3 adet ilişkili tablo gelecektir.
+
+---
+
+## 3. Projenin VS Code ile Açılması ve Çalıştırılması
+
+1.  **VS Code** programını açın.
+2.  Sol üstteki menüden **File -> Open Folder...** (Klasör Aç) seçeneğine tıklayın.
+3.  Proje klasörünüzü (içinde `server.js` ve `b-web-dosyalari` olan klasörü) seçip **Klasörü Seç** butonuna basın. Proje dosyaları sol tarafa gelecektir.
+4.  Üstteki menüden **Terminal -> New Terminal** seçeneğine tıklayın (Ekranın altında siyah bir komut satırı penceresi açılacaktır).
+5.  Açılan o alt pencereye şu kodu yapıştırıp klavyeden **Enter** tuşuna basın:
+    npm install express express-session mysql2
 
 
-3. Veritabanının Kurulumu
-   
-   
-a. MySQL yönetim aracınızı açın.
-
-b. Proje dosyaları içerisinde bulunan `veritabani.sql` dosyasının içindeki SQL kodlarını kopyalayın ve çalıştırın.
-
-c. Bu işlem sonucunda `egitim_db` adında bir veritabanı ve `251109052` ön ekine sahip ilgili tablolar (kullanıcılar, kurslar, kategoriler) örnek verileriyle birlikte oluşturulacaktır.
+Kurulum bittikten sonra projeyi başlatmak için yine aynı yere (terminal) aşşağıdaki komutu yazabilirsiniz.
+1. node server.js
 
 
-5. Veritabanı Bağlantı Ayarları
-   
-   
-a. Proje dizinindeki `server.js` dosyasını bir kod editörü ile açın.
+Alt tarafta `"MySQL Veritabanına başarıyla bağlanıldı."` ve `"Sunucu çalışıyor: http://localhost:3000"` yazılarını gördüyseniz sistem tıkır tıkır çalışıyor demektir!
 
-b. `mysql.createConnection` bloğundaki `user` (kullanıcı adı) ve `password` (şifre) alanlarını, kendi yerel MySQL sunucu bilgilerinize göre güncelleyin.
+---
 
-7. Gerekli Node.js Modüllerinin Yüklenmesi
-   
-Projenin kök dizininde (server.js dosyasının bulunduğu yerde) terminal'i açıp aşağıdaki komutu çalıştırarak gerekli paketleri indirin;
+## 4. Web Arayüzüne Giriş Yapılması
 
-bash
+Sistem arka planda aktif durumdayken herhangi bir internet tarayıcısını açıp şu adresleri ziyaret edebilirsiniz:
 
-npm install
+*   **Ana Giriş Ekranı (Form Alanlı):** `http://localhost:3000`
+*   **Kurs Müfredat Listesi:** `http://localhost:3000/icerik.html`
+*   **Giriş ve Kayıt Sayfası:** `http://localhost:3000/giris.html`
+*   **Yönetici (Admin) Paneli:** `http://localhost:3000/admin.html`
+
+> **Giriş Notu:** Yönetim paneline erişmek için `giris.html` sayfasından sisteme tanımlı olan kullanıcı adı: `admin`, şifre: `admin123` bilgileriyle giriş yapılması zorunludur. Aksi takdirde session kontrolü devreye girerek geçişe izin vermeyecektir.
