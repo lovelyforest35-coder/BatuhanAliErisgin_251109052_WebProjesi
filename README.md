@@ -17,7 +17,7 @@ Sistemi açmadan önce bilgisayarınızda şu yazılımların hazır bulunması 
 1.  **MySQL Workbench** programını açın ve yerel bağlantınıza (`Local Instance`) çift tıklayarak giriş yapın.
 2.  Yukarıdaki menü araçlarından yeni bir SQL sekmesi açın (`Create a new SQL tab`).
 3.  Proje klasöründe yer alan `veritabanı.sql` dosyasının içindeki kod satırlarının tamamını seçip bu sekmeye yapıştırın.
-4.  Yukarıdaki **Şimşek (Execute)** butonuna basarak sorguları çalıştırın. Sol taraftaki *Schemas* kısmına `251109052_egitim_platformu` veritabanı ve 3 adet ilişkili tablo gelecektir.
+4.  Yukarıdaki **Şimşek ** butonuna basarak sorguları çalıştırın. Sol taraftaki *Schemas* kısmına `251109052_egitim_platformu` veritabanı ve 3 adet ilişkili tablo gelecektir.
 
 ---
 
